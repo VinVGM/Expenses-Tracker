@@ -22,7 +22,6 @@ app.use('/api/expenses',expensesRoutes);
 
 
 
-
 mongoose.connect(process.env.MONGO_URI)
     .then(()=>{
         app.listen(process.env.PORT, () => {
