@@ -33,11 +33,30 @@ const getExpense = async(req,res) =>{
 //create new
 const createExpense = async (req,res) => {
     const {title, amount, paymentType} = req.body
+
+    let emptyFields = []
+
+
+    if(!title){
+        emptyFields.push('title');
+    }
+    if(!amount){
+        emptyFields.push('amount');
+    }
+    if(!paymentType){
+        emptyFields.push('paymentType');
+    }
+
+
+    if(emptyFields.length > 0){
+        return res.status(400).json({error: 'Please fill in all the fields', emptyFields})
+    }
+
     try{
         const expense = await Expense.create({title, amount, paymentType})
         res.status(200).json(expense)
     }catch(error){
-        res.status(400).json({error: error.message})
+        res.status(400).json({error: error.message, emptyFields})
     }
 }
 //delete one
