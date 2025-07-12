@@ -2,6 +2,8 @@ require('dotenv').config()
 
 const express = require('express')
 const expensesRoutes = require('./routes/expenses.js')
+const userRoutes = require('./routes/user.js')
+
 const mongoose = require('mongoose')
 
 
@@ -19,6 +21,7 @@ app.use((req,res,next) =>{
 
 
 app.use('/api/expenses',expensesRoutes);
+app.use('/api/user',userRoutes);
 
 
 

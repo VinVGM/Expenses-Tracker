@@ -42,7 +42,7 @@ header a {
 
 .home{
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
   align-items: start;
   gap: 30px;
 }
@@ -112,11 +112,12 @@ input {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 20px;
-  width: 90%;
+  
   border: 1px solid orange;
   border-radius: 10px;
   box-sizing: border-box;
   font-family: SixtyFour;
+  height: 50px;
 
 }
 
@@ -157,3 +158,39 @@ div.success{
 input.error{
   border: 3px solid var(--error);
 } 
+
+
+
+.nav-links{
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.login{
+  display: flex;
+  flex-direction: column;
+  
+  min-width: 350px;
+  max-width: 450px;
+  margin-top: 10%;
+  padding: 70px 250px 0px 250px;
+}
+
+.login button{
+  width: 150px;
+}
+
+.signup{
+  display: flex;
+  flex-direction: column;
+  
+  min-width: 350px;
+  max-width: 450px;
+  margin-top: 10%;
+  padding: 70px 250px 0px 250px;
+}
+
+.signup button{
+  width: 150px;
+}

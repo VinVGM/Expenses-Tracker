@@ -1,7 +1,7 @@
 import { useExpensesContext } from "../hooks/useExpensesContext"
-
+import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
-
+import { useEffect } from "react"
 const ExpenseForm = () => {
     
     const { dispatch } = useExpensesContext()
@@ -11,6 +11,27 @@ const ExpenseForm = () => {
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
+    const [show, setShow] = useState(false);
+
+
+    useEffect(() => {
+        if(show){
+            
+            const timer = setTimeout(() => {
+                setShow(false);
+            },3000);
+
+            return () => clearTimeout(timer)
+        
+        }
+
+        
+    },[show])
+
+
+
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,12 +46,18 @@ const ExpenseForm = () => {
             }
         })
 
+        if(isNaN(amount)){
+            setError('Amount must be a number')
+            return
+        }
+        
+
         const json = await response.json()
 
         if(!response.ok){
             setError(json.error)
             setSuccess(null)
-
+            
             setEmptyFields(json.emptyFields)
 
         }
@@ -40,6 +67,7 @@ const ExpenseForm = () => {
             setAmount('')
             setPaymentType('')
             setError(null)
+            setShow(true);
             setEmptyFields([])
             console.log('New expense added!',json)
             setSuccess("Successfully added!")
@@ -77,7 +105,16 @@ const ExpenseForm = () => {
 
             <button>Add expense</button>
             {error && <div className="error">{error}</div>}
-            {success && <div className="success">{success}</div>}
+
+
+
+            <AnimatePresence>
+            {show &&  <motion.div className="success"
+                initial={{opacity: 0, y:-20}}
+                animate={{opacity:1, y:0}}
+                exit={{opacity:0, y:-20}}   
+            >{success}</motion.div>}
+            </AnimatePresence>
         </form>
     )
 }

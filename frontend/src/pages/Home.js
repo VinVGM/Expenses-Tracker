@@ -23,12 +23,13 @@ const Home = () => {
 
     return (
         <div className="home">
+            <ExpenseForm/>
             <div className="expenses">
                 {expenses && expenses.map((expense)=> (
                     <ExpenseDetails key={expense._id} expense={expense} />
                 ))}
             </div>
-            <ExpenseForm/>
+            
         </div>
 
 
