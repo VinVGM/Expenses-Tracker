@@ -131,6 +131,7 @@ form button{
   font-family: SixtyFour;
   cursor: pointer;
   margin-top: 20px;
+  border:5px solid;
 }
 
 
@@ -165,16 +166,15 @@ input.error{
   display: flex;
   gap: 20px;
   flex-direction: row;
+  align-items: center;
 }
 
 .login{
   display: flex;
   flex-direction: column;
   
-  min-width: 350px;
-  max-width: 450px;
-  margin-top: 10%;
-  padding: 70px 250px 0px 250px;
+  margin: 100px 100px 100px 100px;
+  
 }
 
 .login button{
@@ -184,13 +184,45 @@ input.error{
 .signup{
   display: flex;
   flex-direction: column;
-  
-  min-width: 350px;
-  max-width: 450px;
-  margin-top: 10%;
-  padding: 70px 250px 0px 250px;
+  margin: 100px 100px 100px 100px;
 }
 
 .signup button{
   width: 150px;
+}
+
+nav button{
+  background: var(--primary);
+  border:5px solid;
+  color: wheat;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: SixtyFour;
+  cursor: pointer;
+  
+}
+
+nav{
+  display: flex;
+  gap: 20px;
+}
+
+form{
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  
+  box-shadow: 2px 2px 5px lightsalmon;
+}
+
+.loggedin{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.loggedin span{
+  font-size: 12px;
+  font-weight: bold;
 }

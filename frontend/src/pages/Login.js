@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
+import { useLogin } from '../hooks/useLogin'
+import { AnimatePresence, motion } from "framer-motion"
 
 const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const {login, error, isLoading} = useLogin()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log(email,password);
+        await login(email, password)
     }
 
   return (
@@ -23,7 +25,14 @@ const Login = () => {
         <input type="password" onChange={(e) => setPassword(e.target.value)}
             value = {password}
         ></input>
-        <button>Login</button>
+        <button disabled={isLoading}>Login</button>
+        <AnimatePresence>
+            {error && <motion.div className='error'
+                initial={{opacity:0, y:-20}}
+                animate={{opacity:1, y:0}}
+                exit={{opacity:1, y:-20}}
+            >{error}</motion.div>}
+        </AnimatePresence>
     </form>
   )
 }
