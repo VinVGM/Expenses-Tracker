@@ -1,16 +1,23 @@
 import { useExpensesContext } from "../hooks/useExpensesContext"
-
+import { useAuthContext } from "../hooks/useAuthContext"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const ExpenseDetails = ({ expense }) => {
 
     const { dispatch } = useExpensesContext()
-
+    const { user } = useAuthContext()
 
     
     const handleClick = async () => {
+
+        if(!user){
+            return
+        }
         const response  = await fetch('/api/expenses/' + expense._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         })
 
         const json = await response.json()

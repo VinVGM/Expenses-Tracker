@@ -1,5 +1,6 @@
 import { useEffect} from "react"
 import { useExpensesContext } from "../hooks/useExpensesContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 import ExpenseDetails from '../components/ExpenseDetails'
 
 import ExpenseForm from '../components/ExpenseForm'
@@ -7,10 +8,16 @@ import ExpenseForm from '../components/ExpenseForm'
 const Home = () => {
 
     const {expenses, dispatch}  = useExpensesContext()
+    const {user} = useAuthContext()
+
 
     useEffect(() => {
         const fetchExpenses = async () => {
-            const response = await fetch('/api/expenses')
+            const response = await fetch('/api/expenses', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
             const json = await response.json()
 
             if(response.ok){
@@ -18,8 +25,11 @@ const Home = () => {
             }
         }
 
-        fetchExpenses()
-    }, [dispatch])
+
+        if(user){
+            fetchExpenses()
+        }
+    }, [dispatch,user])
 
     return (
         <div className="home">

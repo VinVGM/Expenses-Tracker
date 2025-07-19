@@ -1,5 +1,6 @@
 import { useExpensesContext } from "../hooks/useExpensesContext"
 import { AnimatePresence, motion } from "framer-motion"
+import { useAuthContext } from "../hooks/useAuthContext"
 import { useState } from "react"
 import { useEffect } from "react"
 const ExpenseForm = () => {
@@ -12,7 +13,7 @@ const ExpenseForm = () => {
     const [success, setSuccess] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
     const [show, setShow] = useState(false);
-
+    const {user} = useAuthContext()
 
     useEffect(() => {
         if(show){
@@ -36,13 +37,19 @@ const ExpenseForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        if(!user){
+            setError('You must be logged in')
+            return
+        }
+
         const expense = {title,amount, paymentType}
 
         const response = await fetch('/api/expenses', {
             method: 'POST',
             body: JSON.stringify(expense),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 
