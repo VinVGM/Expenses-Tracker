@@ -1,5 +1,5 @@
 
-import React from 'react'
+
 import { useAuthContext } from './useAuthContext'
 import { useExpensesContext } from './useExpensesContext'
 export const useLogout = () => {
