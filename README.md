@@ -1,5 +1,11 @@
 # Expense Daddy (MERN Stack App)
 
+![Frontend](https://img.shields.io/badge/Frontend-React-blue?style=for-the-badge&logo=react)
+![Backend](https://img.shields.io/badge/Backend-Express-green?style=for-the-badge&logo=express)
+![Database](https://img.shields.io/badge/Database-MongoDB-yellow?style=for-the-badge&logo=mongodb)
+![Runtime](https://img.shields.io/badge/Runtime-Node.js-darkgreen?style=for-the-badge&logo=node.js)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
 ## Project Overview
 
 Expense Daddy is a full-stack MERN (MongoDB, Express, React, Node.js) application that allows users to register, log in, and manage their personal expenses. Authenticated users can add, view, and delete expenses, each with a title, amount, and payment type. The backend is secured with JWT-based authentication.
